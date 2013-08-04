@@ -17,5 +17,10 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ricardmo/arab-phone/issues"
+  },
+  "dependencies": {
+    "underscore": "~1.5.1",
+    "backbone": "~1.0.0",
+    "express": "~3.3.4"
   }
 }
