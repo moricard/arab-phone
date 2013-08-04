@@ -1,0 +1,21 @@
+{
+  "name": "arab-phone",
+  "version": "0.0.0",
+  "description": "Automatic translation fun",
+  "main": "arab-phone.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ricardmo/arab-phone.git"
+  },
+  "keywords": [
+    "translation"
+  ],
+  "author": "marc-olivier ricard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ricardmo/arab-phone/issues"
+  }
+}
