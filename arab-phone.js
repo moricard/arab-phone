@@ -47,7 +47,34 @@ function phone( phrase /*,languages*/) {
   translate( phrase, pairs[0].from, pairs[0].to );
 }
 
-function next( from, to, i ) {
+
+// Recursive implementation just for fun
+function phoneInit( phrase /*, languages*/) {
+  if ( phoneRec.apply( this, arguments ) ) {
+    var start = [].splice.call(arguments, 1);
+    translate( phrase, start.shift(), start.shift() );
+  }
+}
+
+function phoneRec( phrase /*, languages*/) {
+  var chain = [].splice.call(arguments, 1);
+  if ( chain.length > 2 ) {
+    dataHandler.once( eventName(chain.shift(), chain[0]), next(chain[0], chain[1]) );
+    chain.unshift( phrase );
+    phoneRec.apply( this, chain );
+  } else if ( chain.length === 2 ) {
+    dataHandler.once( eventName(chain[0], chain[1]), function(data) { 
+      console.log('last one : ' +  data.responseData.translatedText );
+    });
+  } else {
+    console.error('We need at least 2 languages to translate');
+    return false;
+  }
+  return true;
+}
+
+function next( from, to ) {
+  console.log('registering callback' + from + to );
   return function( data ) {
     var phrase = data.responseData.translatedText;
       console.log('translation step['+ from +']: ' + phrase );
@@ -72,7 +99,7 @@ function translate( phrase, from, to ) {
   });
 }
 
-phone('pendant que les jeunes vierges se baignent a la fontaine, les vieillards boivent et parient aux courses', 
+phoneInit('pendant que les jeunes vierges se baignent a la fontaine, les vieillards boivent et parient aux courses', 
       'fr', 'en', 'de', 'fr', 'ru', 'es', 'fr', 'es', 'en', 'ko', 'fr');
 
 
