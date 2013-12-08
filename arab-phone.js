@@ -99,8 +99,13 @@ function translate( phrase, from, to ) {
   });
 }
 
-phoneInit('pendant que les jeunes vierges se baignent a la fontaine, les vieillards boivent et parient aux courses', 
-      'fr', 'en', 'de', 'fr', 'ru', 'es', 'fr', 'es', 'en', 'ko', 'fr');
+var sampleString = 'pendant que les jeunes vierges se baignent a la fontaine, les vieillards boivent et parient aux courses';
+
+if(process && process.argv.length > 2) {
+    sampleString = process.argv.splice(2).join(' ');
+}
+
+phoneInit(sampleString, 'fr', 'en', 'de', 'fr', 'ru', 'es', 'fr', 'es', 'en', 'ko', 'fr');
 
 
 module.exports = {
